@@ -5,6 +5,7 @@ from dbase import Base
 from sqlalchemy import Column,ForeignKey
 from sqlalchemy.types import Integer,String
 from sqlalchemy.orm import relationship,backref
+from sqlalchemy.ext.hybrid import hybrid_property
 class Department(Base):
     __tablename__ = 'department'
     id = Column(Integer,primary_key=True)
@@ -14,7 +15,13 @@ class Department(Base):
     groups = relationship("Department",
             backref=backref('belong_to',remote_side=[id]))
     def __unicode__(self):
+        if self.belong_to:
+            return u'%s--%s' %(self.belong_to,self.name)
         return u'%s' %self.name
 
     def __repr__(self):
         return self.__unicode__()
+
+    @hybrid_property
+    def sub_group(self):
+        return ','.join([d.name for d in self.groups])

@@ -22,16 +22,17 @@ class DevTypeView(ModelView):
 
 class DepartmentView(ModelView):
     can_delete = False
+    list_columns = ('name','belong_to','sub_group')
     def __init__(self,session,**kwargs):
         super(DepartmentView,self).__init__(Department,session,**kwargs)
 
 class EmployeeView(ModelView):
     can_delete = False
-    list_columns = ('name','department','used_devs')
+    list_columns = ('empId','name','department','used_devs')
     searchable_columns = ('name',)
     def __init__(self,session,**kwargs):
         super(EmployeeView,self).__init__(Employee,session,**kwargs)
-
+        self._auto_joins = []
 class DevView(ModelView):
     can_delete = False
     searchable_columns = ('lable',)
