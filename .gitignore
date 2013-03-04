@@ -1,0 +1,8 @@
+*.pyc
+*.*~
+models/*.pyc
+models/*.*~
+views/*.pyc
+views/*.*~
+config/*.pyc
+config/*.*~
