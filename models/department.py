@@ -25,3 +25,9 @@ class Department(Base):
     @hybrid_property
     def sub_group(self):
         return ','.join([d.name for d in self.groups])
+    @hybrid_property
+    def employee_num(self):
+        tm = len([e for e in self.employees])
+        if self.groups:
+            tm += sum([sg.employee_num for sg in self.groups])
+        return tm
