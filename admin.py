@@ -19,7 +19,7 @@ class DevTypeView(ModelView):
     list_columns = ('name','price','note','numbers')
     def __init__(self,session,**kwargs):
         super(DevTypeView,self).__init__(DevType,session,**kwargs)
-
+        self._auto_joins=[]
 class DepartmentView(ModelView):
     can_delete = False
     list_columns = ('name','belong_to','sub_group','employee_num')
@@ -40,7 +40,7 @@ class DevView(ModelView):
     list_columns=('lable','used_now_by','detail','note')
     def __init__(self,session,**kwargs):
         super(DevView,self).__init__(Dev,session,**kwargs)
-
+        self._auto_joins = []
 #rtadmin = RoleTypeView(db_session,name=u'角色类型')
 dtadmin = DevTypeView(db_session,name=u'设备类型')
 dpadmin = DepartmentView(db_session,name=u'部门')

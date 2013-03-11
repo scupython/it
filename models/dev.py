@@ -39,7 +39,7 @@ class Dev(Base):
 
     used_now_by = relationship('Employee',
                                primaryjoin='Employee.id==Dev.used_now_by_id',
-                               backref=backref('devs',lazy='dynamic'))
+                               backref=backref('devs'))
 
     
     def __unicode__(self):

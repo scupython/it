@@ -27,7 +27,7 @@ class Employee(Base):
         return ','.join(devs) + '. total %d ' % len(devs)
 
     def __unicode__(self):
-        return u'%s' %(self.name)
+        return u'%s-%s' %(self.department.name,self.name)
 
     def __repr__(self):
         return self.__unicode__()
